@@ -1,0 +1,54 @@
+fileVersion: 1
+id: 5b430e38-8c10-4ed3-8bd2-5645529f7f45
+name: ACA_POLICY
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: DBSHIFT
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a6c30f81-a75d-4f15-8463-e3cf14a84978
+          stepCounter: 5b430e38-8c10-4ed3-8bd2-5645529f7f45
+        config: {}
+        dataType: INTEGER
+        defaultValue: ""
+        description: ""
+        name: ACA_POLICY_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7e73d6d0-4297-40b9-8e50-2f3b97a21f7c
+          stepCounter: 5b430e38-8c10-4ed3-8bd2-5645529f7f45
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        name: ACA_DATE_UPDATED
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: ACA_POLICY
+  schema: DBO
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

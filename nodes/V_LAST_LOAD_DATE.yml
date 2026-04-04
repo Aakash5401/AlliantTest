@@ -1,0 +1,56 @@
+fileVersion: 1
+id: 0317e082-f5c7-43c3-9d41-37d36fd5fd5b
+name: V_LAST_LOAD_DATE
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DBSHIFT
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 01ed09f2-0196-4191-89d1-d97a28e83344
+          stepCounter: 0317e082-f5c7-43c3-9d41-37d36fd5fd5b
+        config: {}
+        dataType: DATETIME
+        description: ""
+        name: LAST_LOAD_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7e73d6d0-4297-40b9-8e50-2f3b97a21f7c
+                stepCounter: 5b430e38-8c10-4ed3-8bd2-5645529f7f45
+            transform: ""
+        transform: COALESCE(MAX(P.ACA_DATE_UPDATED), '1776-07-04 00:00:00.000'::DATETIME)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          ACA_POLICY: P
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DBSHIFT
+            nodeName: ACA_POLICY
+        join:
+          joinCondition: FROM {{ ref('DBSHIFT', 'ACA_POLICY') }} "P"
+            WHERE P.ACA_POLICY_ID <> -1
+        name: V_LAST_LOAD_DATE
+        noLinkRefs: []
+  name: V_LAST_LOAD_DATE
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

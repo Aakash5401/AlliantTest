@@ -1,0 +1,149 @@
+fileVersion: 1
+id: 569e5d99-2785-4ef5-8495-a22c548a8553
+name: ACA_POLICY_GB
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: DBSHIFT
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9e3c9076-2f7e-4b68-80f0-c510842e4722
+          stepCounter: 569e5d99-2785-4ef5-8495-a22c548a8553
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        name: SOURCE_SYSTEM_POLICY_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0f3c5f1a-b0c4-42f8-958b-0836526e0388
+          stepCounter: 569e5d99-2785-4ef5-8495-a22c548a8553
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        name: POLICY_NUMBER
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c0c1d1a6-f942-4f0e-b2d9-e9eb7b37d894
+          stepCounter: 569e5d99-2785-4ef5-8495-a22c548a8553
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: EFFECTIVE_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8d55d7b9-12a8-444f-b649-74d75d733d31
+          stepCounter: 569e5d99-2785-4ef5-8495-a22c548a8553
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: EXPIRATION_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5a4a9c6d-3f1d-488f-a727-463d12d09e03
+          stepCounter: 569e5d99-2785-4ef5-8495-a22c548a8553
+        config: {}
+        dataType: INTEGER
+        defaultValue: ""
+        description: ""
+        name: ACA_SOURCE_SYSTEM_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0f808779-195b-4395-8857-e2a225381944
+          stepCounter: 569e5d99-2785-4ef5-8495-a22c548a8553
+        config: {}
+        dataType: INTEGER
+        defaultValue: ""
+        description: ""
+        name: ACA_POLICY_GB_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d152a5c-de81-4475-b6d3-c97698007a51
+          stepCounter: 569e5d99-2785-4ef5-8495-a22c548a8553
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        defaultValue: ""
+        description: ""
+        name: ACA_DATE_UPDATED
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: ACA_POLICY_GB
+  schema: DBO
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

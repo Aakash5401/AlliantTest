@@ -1,0 +1,197 @@
+fileVersion: 1
+id: 5df06e8b-b1a8-48dc-83e9-7928e08d6c70
+name: ACA_POLICY_STAGING
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: false
+  database: ALLIANT_CLAIMS_ASTRUS_STAGE
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DBSHIFT
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3a2c00c7-1c29-4d8e-9c59-d897f26c986c
+          stepCounter: 5df06e8b-b1a8-48dc-83e9-7928e08d6c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SOURCE_SYSTEM_POLICY_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 167b2d5f-3c58-406c-b3e1-7e87ab01121d
+                stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+            transform: ""
+        transform: U.SOURCE_SYSTEM_POLICY_ID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a6edbcae-1c65-4f6c-8ab5-f1295b927a44
+          stepCounter: 5df06e8b-b1a8-48dc-83e9-7928e08d6c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: POLICY_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 77a06f36-3958-45a6-988f-10e8d350937a
+                stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+            transform: ""
+        transform: U.POLICY_NUMBER
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 58e11a36-32d1-449e-b851-d4190cdecfbb
+          stepCounter: 5df06e8b-b1a8-48dc-83e9-7928e08d6c70
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 914e1fce-15a0-4228-a400-344c205e468a
+                stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+            transform: ""
+        transform: U.EFFECTIVE_DATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 32a67749-d343-4f9e-a0e2-6e2bb7a8581f
+          stepCounter: 5df06e8b-b1a8-48dc-83e9-7928e08d6c70
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EXPIRATION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c8243869-d41f-4bb2-b7e6-2396e95c4793
+                stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+            transform: ""
+        transform: U.EXPIRATION_DATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1676669c-29dd-4813-bc75-c54d249f059c
+          stepCounter: 5df06e8b-b1a8-48dc-83e9-7928e08d6c70
+        config: {}
+        dataType: INTEGER
+        description: ""
+        name: CASE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e0142d76-b6e5-4122-8356-8a3d132b9846
+                stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+            transform: ""
+        transform: U.CASE_ID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1115de6f-004b-4b15-99d8-9df8d0700d8b
+          stepCounter: 5df06e8b-b1a8-48dc-83e9-7928e08d6c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CASE_DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: af68f86f-a96e-4734-935f-141a0e7193b2
+                stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+            transform: ""
+        transform: U.CASE_DESCRIPTION
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8601c0b-4028-4034-8c83-7c98f9937a50
+          stepCounter: 5df06e8b-b1a8-48dc-83e9-7928e08d6c70
+        config: {}
+        dataType: INTEGER
+        description: ""
+        name: ACA_SOURCE_SYSTEM_ID_WINNER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0f806950-841f-49b8-a15d-852655d8cc80
+                stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+            transform: ""
+        transform: U.ACA_SOURCE_SYSTEM_ID_WINNER
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d166f28b-b893-4a69-8d19-4a6176311681
+          stepCounter: 5df06e8b-b1a8-48dc-83e9-7928e08d6c70
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: ACA_DATE_CREATED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: CURRENT_TIMESTAMP()
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3267e857-41a4-436d-b8d1-d226a2985161
+          stepCounter: 5df06e8b-b1a8-48dc-83e9-7928e08d6c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ACA_CREATE_USER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: '''spaca_aca_policy_staging_insert'''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cce26ac3-b5bb-419b-b27a-e45fc2d7a220
+          stepCounter: 5df06e8b-b1a8-48dc-83e9-7928e08d6c70
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: ACA_DATE_UPDATED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: CURRENT_TIMESTAMP()
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bbd2e911-3965-433a-969c-091f09c257b4
+          stepCounter: 5df06e8b-b1a8-48dc-83e9-7928e08d6c70
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ACA_UPDATE_USER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: '''spaca_aca_policy_staging_insert'''
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_ACA_POLICY_COMBINED: U
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DBSHIFT
+            nodeName: STG_ACA_POLICY_COMBINED
+        join:
+          joinCondition: FROM {{ ref('DBSHIFT', 'STG_ACA_POLICY_COMBINED') }} "U"
+        name: ACA_POLICY_STAGING
+        noLinkRefs: []
+  name: ACA_POLICY_STAGING
+  overrideSQL: false
+  schema: DBO
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

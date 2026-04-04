@@ -1,0 +1,153 @@
+fileVersion: 1
+id: 5dfa9a38-c6f3-4e3a-b850-8b0933555cc5
+name: STG_POLICY_ESIS_ONLY
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DBSHIFT
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1e57c8d9-601e-450f-bb17-640a23362a74
+          stepCounter: 5dfa9a38-c6f3-4e3a-b850-8b0933555cc5
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SOURCE_SYSTEM_POLICY_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 29759e69-0775-4c07-88ab-f2882a17277a
+                stepCounter: 59a118e9-d419-482a-a95e-bd040de29a39
+            transform: ""
+        transform: ESIS.SOURCE_SYSTEM_POLICY_ID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f317540a-9d8f-46e1-95be-24f4693a19e5
+          stepCounter: 5dfa9a38-c6f3-4e3a-b850-8b0933555cc5
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: POLICY_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 476839aa-09a2-4720-94e8-8832a83c749b
+                stepCounter: 59a118e9-d419-482a-a95e-bd040de29a39
+            transform: ""
+        transform: ESIS.POLICY_NUMBER
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c1f7b022-75d1-4e78-958b-0e4fc9dd9432
+          stepCounter: 5dfa9a38-c6f3-4e3a-b850-8b0933555cc5
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c02c5f11-0940-420a-8d19-9430c5e75143
+                stepCounter: 59a118e9-d419-482a-a95e-bd040de29a39
+            transform: ""
+        transform: ESIS.EFFECTIVE_DATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 322c34d3-1b91-49fa-926c-d1c08b6f3b0e
+          stepCounter: 5dfa9a38-c6f3-4e3a-b850-8b0933555cc5
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EXPIRATION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b130e9d0-1c09-472e-89c0-6d45e59e9955
+                stepCounter: 59a118e9-d419-482a-a95e-bd040de29a39
+            transform: ""
+        transform: ESIS.EXPIRATION_DATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0f2b604e-e175-474c-87d3-0eb47d7d51ee
+          stepCounter: 5dfa9a38-c6f3-4e3a-b850-8b0933555cc5
+        config: {}
+        dataType: INTEGER
+        description: ""
+        name: CASE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: "3"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5913ef04-7127-4632-a589-9b93e506663f
+          stepCounter: 5dfa9a38-c6f3-4e3a-b850-8b0933555cc5
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CASE_DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: '''Records In ESIS that don''t exists in GB'''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3b2d6a59-a5c9-4a0b-93ca-a010be5f6e80
+          stepCounter: 5dfa9a38-c6f3-4e3a-b850-8b0933555cc5
+        config: {}
+        dataType: INTEGER
+        description: ""
+        name: ACA_SOURCE_SYSTEM_ID_WINNER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b0c8046-6019-4b68-80f0-8c22784d1a01
+                stepCounter: 59a118e9-d419-482a-a95e-bd040de29a39
+            transform: ""
+        transform: ESIS.ACA_SOURCE_SYSTEM_ID
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          ACA_POLICY_ESIS: ESIS
+          ACA_POLICY_GB: GB
+          V_LAST_LOAD_DATE: LD
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DBSHIFT
+            nodeName: ACA_POLICY_ESIS
+          - locationName: DBSHIFT
+            nodeName: ACA_POLICY_GB
+          - locationName: DBSHIFT
+            nodeName: V_LAST_LOAD_DATE
+        join:
+          joinCondition: FROM {{ ref('DBSHIFT', 'ACA_POLICY_ESIS') }} "ESIS"
+            CROSS JOIN {{ ref('DBSHIFT', 'V_LAST_LOAD_DATE') }} "LD" LEFT JOIN
+            {{ ref('DBSHIFT', 'ACA_POLICY_GB') }} "GB" ON GB.SOURCE_SYSTEM_POLICY_ID
+            = ESIS.SOURCE_SYSTEM_POLICY_ID AND GB.ACA_POLICY_GB_ID <> -1 AND
+            GB.ACA_DATE_UPDATED > LD.LAST_LOAD_DATE WHERE ESIS.ACA_POLICY_ESIS_ID
+            <> -1 AND ESIS.ACA_DATE_UPDATED > LD.LAST_LOAD_DATE AND GB.ACA_POLICY_GB_ID
+            IS NULL
+        name: STG_POLICY_ESIS_ONLY
+        noLinkRefs: []
+  name: STG_POLICY_ESIS_ONLY
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

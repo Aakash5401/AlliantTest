@@ -1,0 +1,155 @@
+fileVersion: 1
+id: 56930f55-7389-4a27-a006-25f0e1e699d7
+name: STG_ACA_POLICY_COMBINED
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: DBSHIFT
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 167b2d5f-3c58-406c-b3e1-7e87ab01121d
+          stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SOURCE_SYSTEM_POLICY_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b70f6f4d-459f-43b6-993d-8e4722883f36
+                stepCounter: 54b85c2c-96b0-4660-8438-e6d8a4175344
+            transform: ""
+        transform: U.SOURCE_SYSTEM_POLICY_ID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77a06f36-3958-45a6-988f-10e8d350937a
+          stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: POLICY_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e82e16c3-162e-4e6f-a636-696614f09d8d
+                stepCounter: 54b85c2c-96b0-4660-8438-e6d8a4175344
+            transform: ""
+        transform: U.POLICY_NUMBER
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 914e1fce-15a0-4228-a400-344c205e468a
+          stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EFFECTIVE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b57e491c-99d7-4c3d-b485-611cf03f56d9
+                stepCounter: 54b85c2c-96b0-4660-8438-e6d8a4175344
+            transform: ""
+        transform: U.EFFECTIVE_DATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c8243869-d41f-4bb2-b7e6-2396e95c4793
+          stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+        config: {}
+        dataType: DATE
+        description: ""
+        name: EXPIRATION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c0228e93-27e7-4bd3-ad6c-947b7468a514
+                stepCounter: 54b85c2c-96b0-4660-8438-e6d8a4175344
+            transform: ""
+        transform: U.EXPIRATION_DATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e0142d76-b6e5-4122-8356-8a3d132b9846
+          stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+        config: {}
+        dataType: INTEGER
+        description: ""
+        name: CASE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c822e032-15f5-46f9-8b01-2092c4eb6e94
+                stepCounter: 54b85c2c-96b0-4660-8438-e6d8a4175344
+            transform: ""
+        transform: U.CASE_ID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: af68f86f-a96e-4734-935f-141a0e7193b2
+          stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CASE_DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a631853d-24e0-4131-b4f0-32df9e7e7a51
+                stepCounter: 54b85c2c-96b0-4660-8438-e6d8a4175344
+            transform: ""
+        transform: U.CASE_DESCRIPTION
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0f806950-841f-49b8-a15d-852655d8cc80
+          stepCounter: 56930f55-7389-4a27-a006-25f0e1e699d7
+        config: {}
+        dataType: INTEGER
+        description: ""
+        name: ACA_SOURCE_SYSTEM_ID_WINNER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5218525b-c2e9-4467-b8a7-33eb9ed3d8c8
+                stepCounter: 54b85c2c-96b0-4660-8438-e6d8a4175344
+            transform: ""
+        transform: U.ACA_SOURCE_SYSTEM_ID_WINNER
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: DBSHIFT
+            nodeName: STG_POLICY_GB_ESIS_MATCH
+          - locationName: DBSHIFT
+            nodeName: STG_POLICY_GB_ONLY
+          - locationName: DBSHIFT
+            nodeName: STG_POLICY_ESIS_ONLY
+        join:
+          joinCondition: |-
+            FROM (
+              SELECT * FROM {{ ref('DBSHIFT','STG_POLICY_GB_ESIS_MATCH') }}
+              UNION ALL
+              SELECT * FROM {{ ref('DBSHIFT','STG_POLICY_GB_ONLY') }}
+              UNION ALL
+              SELECT * FROM {{ ref('DBSHIFT','STG_POLICY_ESIS_ONLY') }}
+            ) "U"
+        name: STG_ACA_POLICY_COMBINED
+        noLinkRefs: []
+  name: STG_ACA_POLICY_COMBINED
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
