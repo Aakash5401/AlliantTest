@@ -1,0 +1,88 @@
+fileVersion: 1
+id: 1f2a3b4c-5d6e-4f7a-8b9c-0d1e2f3a4b5c
+name: ACA_PYRAMID
+type: Node
+operation:
+  name: ACA_PYRAMID
+  type: sourceInput
+  database: ''
+  deployEnabled: true
+  description: ''
+  locationName: ALLIANT_CLAIMS_ASTRUS_DBO
+  metadata:
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b0c1d2e3-f4a5-4b6c-7d8e-9f0a1b2c3d4e
+          stepCounter: 1f2a3b4c-5d6e-4f7a-8b9c-0d1e2f3a4b5c
+        config: {}
+        dataType: VARCHAR
+        description: ''
+        name: CLIENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f
+          stepCounter: 1f2a3b4c-5d6e-4f7a-8b9c-0d1e2f3a4b5c
+        config: {}
+        dataType: VARCHAR
+        description: ''
+        name: UNIT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d2e3f4a5-b6c7-4d8e-9f0a-1b2c3d4e5f6a
+          stepCounter: 1f2a3b4c-5d6e-4f7a-8b9c-0d1e2f3a4b5c
+        config: {}
+        dataType: VARCHAR
+        description: ''
+        name: LEVEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e3f4a5b6-c7d8-4e9f-0a1b-2c3d4e5f6a7b
+          stepCounter: 1f2a3b4c-5d6e-4f7a-8b9c-0d1e2f3a4b5c
+        config: {}
+        dataType: VARCHAR
+        description: ''
+        name: INSURED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f4a5b6c7-d8e9-4f0a-1b2c-3d4e5f6a7b8c
+          stepCounter: 1f2a3b4c-5d6e-4f7a-8b9c-0d1e2f3a4b5c
+        config: {}
+        dataType: VARCHAR
+        description: ''
+        name: SUBSIDIARY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a5b6c7d8-e9f0-4a1b-2c3d-4e5f6a7b8c9d
+          stepCounter: 1f2a3b4c-5d6e-4f7a-8b9c-0d1e2f3a4b5c
+        config: {}
+        dataType: VARCHAR
+        description: ''
+        name: UNIT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+  schema: ''
+  sqlType: Source
+  version: 1
