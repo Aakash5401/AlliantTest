@@ -1,0 +1,61 @@
+fileVersion: 1
+id: d36e8b15-9c4a-4f27-8a1b-5e7c2f9d4b61
+name: ASTRUSMODELNCCIINJURYCODE
+type: Node
+operation:
+  name: ASTRUSMODELNCCIINJURYCODE
+  type: sourceInput
+  database: ''
+  deployEnabled: true
+  description: ''
+  locationName: ALLIANT_CLAIMS_ASTRUS_RPT
+  metadata:
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d36e8b15-7000-4000-8000-000000000001
+          stepCounter: d36e8b15-9c4a-4f27-8a1b-5e7c2f9d4b61
+        config: {}
+        dataType: VARCHAR(255)
+        defaultValue: ''
+        description: ''
+        name: SOURCE_SYSTEM_NCCI_INJURY_CODE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+        uniqueKey: false
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d36e8b15-7000-4000-8000-000000000002
+          stepCounter: d36e8b15-9c4a-4f27-8a1b-5e7c2f9d4b61
+        config: {}
+        dataType: VARCHAR(255)
+        defaultValue: ''
+        description: ''
+        name: NCCI_INJURY_CODE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+        uniqueKey: false
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d36e8b15-7000-4000-8000-000000000003
+          stepCounter: d36e8b15-9c4a-4f27-8a1b-5e7c2f9d4b61
+        config: {}
+        dataType: VARCHAR(255)
+        defaultValue: ''
+        description: ''
+        name: NCCI_INJURY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+        uniqueKey: false
+  schema: ''
+  sqlType: Source
+  version: 1

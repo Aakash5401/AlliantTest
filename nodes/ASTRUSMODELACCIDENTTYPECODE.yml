@@ -1,0 +1,46 @@
+fileVersion: 1
+id: 4f718a36-9b5e-4c02-8a1d-5c6e93b2f8a4
+name: ASTRUSMODELACCIDENTTYPECODE
+type: Node
+operation:
+  name: ASTRUSMODELACCIDENTTYPECODE
+  type: sourceInput
+  database: ''
+  deployEnabled: true
+  description: ''
+  locationName: ALLIANT_CLAIMS_ASTRUS_RPT
+  metadata:
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4f718a36-4000-4000-8000-000000000001
+          stepCounter: 4f718a36-9b5e-4c02-8a1d-5c6e93b2f8a4
+        config: {}
+        dataType: VARCHAR(255)
+        defaultValue: ''
+        description: ''
+        name: ACCIDENT_TYPE_CODE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+        uniqueKey: false
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4f718a36-4000-4000-8000-000000000002
+          stepCounter: 4f718a36-9b5e-4c02-8a1d-5c6e93b2f8a4
+        config: {}
+        dataType: VARCHAR(255)
+        defaultValue: ''
+        description: ''
+        name: ACCIDENT_TYPE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+        uniqueKey: false
+  schema: ''
+  sqlType: Source
+  version: 1

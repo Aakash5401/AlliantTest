@@ -1,0 +1,61 @@
+fileVersion: 1
+id: 7f14b9d3-8c5e-401a-96b2-3a5e8c1d7f24
+name: ASTRUSMODELNCCILOSSCOVERAGECODE
+type: Node
+operation:
+  name: ASTRUSMODELNCCILOSSCOVERAGECODE
+  type: sourceInput
+  database: ''
+  deployEnabled: true
+  description: ''
+  locationName: ALLIANT_CLAIMS_ASTRUS_RPT
+  metadata:
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f14b9d3-8000-4000-8000-000000000001
+          stepCounter: 7f14b9d3-8c5e-401a-96b2-3a5e8c1d7f24
+        config: {}
+        dataType: VARCHAR(255)
+        defaultValue: ''
+        description: ''
+        name: SOURCE_SYSTEM_NCCI_LOSS_COVERAGE_CODE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+        uniqueKey: false
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f14b9d3-8000-4000-8000-000000000002
+          stepCounter: 7f14b9d3-8c5e-401a-96b2-3a5e8c1d7f24
+        config: {}
+        dataType: VARCHAR(255)
+        defaultValue: ''
+        description: ''
+        name: NCCI_LOSS_COVERAGE_CODE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+        uniqueKey: false
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f14b9d3-8000-4000-8000-000000000003
+          stepCounter: 7f14b9d3-8c5e-401a-96b2-3a5e8c1d7f24
+        config: {}
+        dataType: VARCHAR(255)
+        defaultValue: ''
+        description: ''
+        name: NCCI_LOSS_COVERAGE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+        uniqueKey: false
+  schema: ''
+  sqlType: Source
+  version: 1
