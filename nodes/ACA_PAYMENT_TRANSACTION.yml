@@ -1,0 +1,858 @@
+fileVersion: 1
+id: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+name: ACA_PAYMENT_TRANSACTION
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: |-
+      BEGIN
+      DELETE FROM ALLIANT_CLAIMS_ASTRUS.DBO.ACA_PAYMENT_TRANSACTION
+      WHERE ACA_SOURCE_SYSTEM_ID = (SELECT ACA_SOURCE_SYSTEM_ID FROM ALLIANT_CLAIMS_ASTRUS.DBO.ACA_SOURCE_SYSTEM WHERE SOURCE_SYSTEM = 'GB')
+      AND TRANSACTION_DATE IN (SELECT TRANSACTION_DATE
+                                   FROM {{ ref('ALLIANT_CLAIMS_ASTRUS_STAGE_DBO', 'ACA_PAYMENT_TRANSACTION_STAGING_GB') }}
+                                   GROUP BY TRANSACTION_DATE);
+      DELETE FROM ALLIANT_CLAIMS_ASTRUS.DBO.ACA_PAYMENT_TRANSACTION
+      WHERE ACA_SOURCE_SYSTEM_ID = (SELECT ACA_SOURCE_SYSTEM_ID FROM ALLIANT_CLAIMS_ASTRUS.DBO.ACA_SOURCE_SYSTEM WHERE SOURCE_SYSTEM = 'ESIS')
+      AND TRANSACTION_DATE IN (SELECT TRANSACTION_DATE
+                                   FROM {{ ref('ALLIANT_CLAIMS_ASTRUS_STAGE_DBO', 'ACA_PAYMENT_TRANSACTION_STAGING_ESIS') }}
+                                   GROUP BY TRANSACTION_DATE);
+      END;
+    testsEnabled: true
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: ALLIANT_CLAIMS_ASTRUS_DBO
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f2a3b4c-5d6e-4f7a-8b9c-0d1e2a3b4c5d
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SOURCE_SYSTEM_PAYMENT_TRANSACTION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c1a2b3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 1a2b3d4e-5f6a-4b7c-8d9e-0f1a2b3c4d5e
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.SOURCE_SYSTEM_PAYMENT_TRANSACTION_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a3b4c5d-6e7f-4a8b-9c0d-1e2a3b4c5d6e
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_CLAIM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d2b3c4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 2b3c4e5f-6a7b-4c8d-9e0f-1a2b3c4d5e6f
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_CLAIM_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3b4c5d6e-7f8a-4b9c-0d1e-2a3b4c5d6e7f
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_RESERVE_TYPE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e3c4d5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 3c4d5f6a-7b8c-4d9e-0f1a-2b3c4d5e6f7a
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_RESERVE_TYPE_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4c5d6e7f-8a9b-4c0d-1e2a-3b4c5d6e7f8a
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_POLICY_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f4d5e6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 4d5e6a7b-8c9d-4e0f-1a2b-3c4d5e6f7a8b
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_POLICY_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d6e7f8a-9b0c-4d1e-2a3b-4c5d6e7f8a9b
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_PAYMENT_ATTRIBUTE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a5e6f7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 5e6f7b8c-9d0e-4f1a-2b3c-4d5e6f7a8b9c
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_PAYMENT_ATTRIBUTE_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6e7f8a9b-0c1d-4e2a-3b4c-5d6e7f8a9b0c
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_PAYEE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b6f7a8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 6f7a8c9d-0e1f-4a2b-3c4d-5e6f7b8c9d0e
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_PAYEE_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f8a9b0c-1d2e-4f3a-4b5c-6e7f8a9b0c1d
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_DATE_ID_TRANSACTION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c7a8b9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 7a8b9d0e-1f2a-4b3c-4d5e-6f7a8c9d0e1f
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_DATE_ID_TRANSACTION_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8a9b0c1d-2e3f-4a4b-5c6d-7f8a9b0c1d2e
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_DATE_ID_PAYMENT_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d8b9c0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 8b9c0e1f-2a3b-4c4d-5e6f-7a8b9d0e1f2a
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_DATE_ID_PAYMENT_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b0c1d2e-3f4a-4b5c-6d7e-8a9b0c1d2e3f
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_DATE_ID_PAYMENT_ENTRY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e9c0d1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 9c0d1f2a-3b4c-4d5e-6f7a-8b9c0e1f2a3b
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_DATE_ID_PAYMENT_ENTRY_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0c1d2e3f-4a5b-4c6d-7e8f-9b0c1d2e3f4a
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_DATE_ID_SERVICE_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f0d1e2a3-b4c5-4d6e-7f8a-9b0c1d2e3f4a
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 0d1e2a3b-4c5d-4e6f-7a8b-9c0d1f2a3b4c
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_DATE_ID_SERVICE_START_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1d2e3f4a-5b6c-4d7e-8f9a-0c1d2e3f4a5b
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_DATE_ID_SERVICE_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1e2f3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 1e2f3b4c-5d6e-4f7a-8b9c-0d1e2a3b4c5d
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_DATE_ID_SERVICE_END_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2e3f4a5b-6c7d-4e8f-9a0b-1d2e3f4a5b6c
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_DATE_ID_BENEFIT_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b2f3a4c5-d6e7-4f8a-9b0c-1d2e3f4a5b6c
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 2f3a4c5d-6e7f-4a8b-9c0d-1e2f3b4c5d6e
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_DATE_ID_BENEFIT_START_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3f4a5b6c-7d8e-4f9a-0b1c-2e3f4a5b6c7d
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_DATE_ID_BENEFIT_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c3a4b5d6-e7f8-4a9b-0c1d-2e3f4a5b6c7d
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 3a4b5d6e-7f8a-4b9c-0d1e-2f3a4c5d6e7f
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_DATE_ID_BENEFIT_END_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a5b6c7d-8e9f-4a0b-1c2d-3f4a5b6c7d8e
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_DATE_ID_SETTLEMENT_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d4b5c6e7-f8a9-4b0c-1d2e-3f4a5b6c7d8e
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 4b5c6e7f-8a9b-4c0d-1e2f-3a4b5d6e7f8a
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_DATE_ID_SETTLEMENT_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b6c7d8e-9f0a-4b1c-2d3e-4a5b6c7d8e9f
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SOURCE_SYSTEM_CLAIM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e5c6d7f8-a9b0-4c1d-2e3f-4a5b6c7d8e9f
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 5c6d7f8a-9b0c-4d1e-2f3a-4b5c6e7f8a9b
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.SOURCE_SYSTEM_CLAIM_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6c7d8e9f-0a1b-4c2d-3e4f-5b6c7d8e9f0a
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: TRANSACTION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6d7e8a9-b0c1-4d2e-3f4a-5b6c7d8e9f0a
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 6d7e8a9b-0c1d-4e2f-3a4b-5c6d7f8a9b0c
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.TRANSACTION_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7d8e9f0a-1b2c-4d3e-4f5a-6c7d8e9f0a1b
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: PAYMENT_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7e8f9b0-c1d2-4e3f-4a5b-6c7d8e9f0a1b
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 7e8f9b0c-1d2e-4f3a-4b5c-6d7e8a9b0c1d
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.PAYMENT_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e9f0a1b-2c3d-4e4f-5a6b-7d8e9f0a1b2c
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: PAYMENT_ENTRY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b8f9a0c1-d2e3-4f4a-5b6c-7d8e9f0a1b2c
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 8f9a0c1d-2e3f-4a4b-5c6d-7e8f9b0c1d2e
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.PAYMENT_ENTRY_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9f0a1b2c-3d4e-4f5a-6b7c-8e9f0a1b2c3d
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: SERVICE_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c9a0b1d2-e3f4-4a5b-6c7d-8e9f0a1b2c3d
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 9a0b1d2e-3f4a-4b5c-6d7e-8f9a0c1d2e3f
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.SERVICE_START_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a1b2c3d-4e5f-4a6b-7c8d-9f0a1b2c3d4e
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: SERVICE_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d0b1c2e3-f4a5-4b6c-7d8e-9f0a1b2c3d4e
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 0b1c2e3f-4a5b-4c6d-7e8f-9a0b1d2e3f4a
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.SERVICE_END_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1b2c3d4e-5f6a-4b7c-8d9e-0a1b2c3d4e5f
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: BENEFIT_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1c2d3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 1c2d3f4a-5b6c-4d7e-8f9a-0b1c2e3f4a5b
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.BENEFIT_START_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2c3d4e5f-6a7b-4c8d-9e0f-1b2c3d4e5f6a
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: BENEFIT_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f2d3e4a5-b6c7-4d8e-9f0a-1b2c3d4e5f6a
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 2d3e4a5b-6c7d-4e8f-9a0b-1c2d3f4a5b6c
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.BENEFIT_END_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3d4e5f6a-7b8c-4d9e-0f1a-2c3d4e5f6a7b
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: SETTLEMENT_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a3e4f5b6-c7d8-4e9f-0a1b-2c3d4e5f6a7b
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 3e4f5b6c-7d8e-4f9a-0b1c-2d3e4a5b6c7d
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.SETTLEMENT_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4e5f6a7b-8c9d-4e0f-1a2b-3d4e5f6a7b8c
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: TRANSACTION_SEQUENCE_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b4f5a6c7-d8e9-4f0a-1b2c-3d4e5f6a7b8c
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 4f5a6c7d-8e9f-4a0b-1c2d-3e4f5b6c7d8e
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.TRANSACTION_SEQUENCE_NUMBER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5f6a7b8c-9d0e-4f1a-2b3c-4e5f6a7b8c9d
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PAYMENT_CONTROL_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c5a6b7d8-e9f0-4a1b-2c3d-4e5f6a7b8c9d
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 5a6b7d8e-9f0a-4b1c-2d3e-4f5a6c7d8e9f
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.PAYMENT_CONTROL_NUMBER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a7b8c9d-0e1f-4a2b-3c4d-5f6a7b8c9d0e
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PAYMENT_CONTROL_NUMBER_CLIENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d6b7c8e9-f0a1-4b2c-3d4e-5f6a7b8c9d0e
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 6b7c8e9f-0a1b-4c2d-3e4f-5a6b7d8e9f0a
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.PAYMENT_CONTROL_NUMBER_CLIENT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7b8c9d0e-1f2a-4b3c-4d5e-6a7b8c9d0e1f
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RECIPIENT_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7c8d9f0-a1b2-4c3d-4e5f-6a7b8c9d0e1f
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 7c8d9f0a-1b2c-4d3e-4f5a-6b7c8e9f0a1b
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.RECIPIENT_NUMBER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8c9d0e1f-2a3b-4c4d-5e6f-7b8c9d0e1f2a
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LOST_WORK_DAYS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f8d9e0a1-b2c3-4d4e-5f6a-7b8c9d0e1f2a
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 8d9e0a1b-2c3d-4e4f-5a6b-7c8d9f0a1b2c
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.LOST_WORK_DAYS"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9d0e1f2a-3b4c-4d5e-6f7a-8c9d0e1f2a3b
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CHECK_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a9e0f1b2-c3d4-4e5f-6a7b-8c9d0e1f2a3b
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 9e0f1b2c-3d4e-4f5a-6b7c-8d9e0a1b2c3d
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.CHECK_NUMBER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e1f2a3b-4c5d-4e6f-7a8b-9d0e1f2a3b4c
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: BINARY
+        description: ""
+        name: CLIENT_NUMBER_BANK_ENCRYPTED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b0f1a2c3-d4e5-4f6a-7b8c-9d0e1f2a3b4c
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 0f1a2c3d-4e5f-4a6b-7c8d-9e0f1b2c3d4e
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.CLIENT_NUMBER_BANK_ENCRYPTED"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f2a3b4c-5d6e-4f7a-8b9c-0e1f2a3b4c5d
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: BINARY
+        description: ""
+        name: BANK_NUMBER_ENCRYPTED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c1a2b3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 1a2b3d4e-5f6a-4b7c-8c9d-0f1a2c3d4e5f
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.BANK_NUMBER_ENCRYPTED"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2a3b4c5d-6e7f-4a8b-9c0d-1f2a3b4c5d6e
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: BINARY
+        description: ""
+        name: ACCOUNT_NUMBER_ENCRYPTED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d2b3c4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 2b3c4e5f-6a7b-4c8d-9d0e-1a2b3d4e5f6a
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACCOUNT_NUMBER_ENCRYPTED"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3b4c5d6e-7f8a-4b9c-0d1e-2a3b4c5d6e7f
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PAYMENT_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e3c4d5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 3c4d5f6a-7b8c-4d9e-0e1f-2b3c4e5f6a7b
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.PAYMENT_CODE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4c5d6e7f-8a9b-4c0d-1e2f-3b4c5d6e7f8a
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EXPENSE_PAYMENT_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f4d5e6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 4d5e6a7b-8c9d-4e0f-1f2a-3c4d5f6a7b8c
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.EXPENSE_PAYMENT_CODE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d6e7f8a-9b0c-4d1e-2f3a-4c5d6e7f8a9b
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CLIENT_OPTIONAL_PAYMENT_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a5e6f7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 5e6f7b8c-9d0e-4f1a-2a3b-4d5e6a7b8c9d
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.CLIENT_OPTIONAL_PAYMENT_CODE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6e7f8a9b-0c1d-4e2f-3a4b-5d6e7f8a9b0c
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CLAIM_ADJUSTING_BRANCH_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b6f7a8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 6f7a8c9d-0e1f-4a2b-3b4c-5e6f7b8c9d0e
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.CLAIM_ADJUSTING_BRANCH_NUMBER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f8a9b0c-1d2e-4f3a-4b5c-6e7f8a9b0c1d
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: BINARY
+        description: ""
+        name: PAYMENT_MESSAGE_ENCRYPTED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c7a8b9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 7a8b9d0e-1f2a-4b3c-4c5d-6f7a8c9d0e1f
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.PAYMENT_MESSAGE_ENCRYPTED"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8a9b0c1d-2e3f-4a4b-5c6d-7f8a9b0c1d2e
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INDEMNITY_BREAKDOWN_PAYMENT_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d8b9c0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 8b9c0e1f-2a3b-4c4d-5d6e-7a8b9d0e1f2a
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.INDEMNITY_BREAKDOWN_PAYMENT_CODE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b0c1d2e-3f4a-4b5c-6d7e-8a9b0c1d2e3f
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: INDEMNITY_BREAKDOWN_DCI_BENEFIT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e9c0d1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 9c0d1f2a-3b4c-4d5e-6e7f-8b9c0e1f2a3b
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.INDEMNITY_BREAKDOWN_DCI_BENEFIT_TYPE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0c1d2e3f-4a5b-4c6d-7e8f-9b0c1d2e3f4a
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(19,4)
+        description: ""
+        name: INDEMNITY_BREAKDOWN_PAYMENT_AMOUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f0d1e2a3-b4c5-4d6e-7f8a-9b0c1d2e3f4a
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 0d1e2a3b-4c5d-4e6f-7f8a-9c0d1f2a3b4c
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.INDEMNITY_BREAKDOWN_PAYMENT_AMOUNT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1d2e3f4a-5b6c-4d7e-8f9a-0c1d2e3f4a5b
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PAYMENT_TYPE_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1e2f3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 1e2f3b4c-5d6e-4f7a-8a9b-0d1e2a3b4c5d
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.PAYMENT_TYPE_CODE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2e3f4a5b-6c7d-4e8f-9a0b-1d2e3f4a5b6c
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: COVERAGE_GROUP_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b2f3a4c5-d6e7-4f8a-9b0c-1d2e3f4a5b6c
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 2f3a4c5d-6e7f-4a8b-9b0c-1e2f3b4c5d6e
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.COVERAGE_GROUP_CODE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3f4a5b6c-7d8e-4f9a-0b1c-2e3f4a5b6c7d
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RESERVE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c3a4b5d6-e7f8-4a9b-0c1d-2e3f4a5b6c7d
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 3a4b5d6e-7f8a-4b9c-0c1d-2e3f4a5b6c7d
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.RESERVE_TYPE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a5b6c7d-8e9f-4a0b-1c2d-3f4a5b6c7d8e
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(19,4)
+        description: ""
+        name: PAYMENT_AMOUNT_BY_RESERVE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d4b5c6e7-f8a9-4b0c-1d2e-3f4a5b6c7d8e
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 4b5c6e7f-8a9b-4c0d-1d2e-3a4b5d6e7f8a
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.PAYMENT_AMOUNT_BY_RESERVE_TYPE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b6c7d8e-9f0a-4b1c-2d3e-4f5b6c7d8e9f
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: RESERVED_FOR_INTERNAL_USE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e4f5c6b4-a5f2-4bac-e8f4-bceafbe6c7ab
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 7a8b9c0d-1e2f-4a3b-4c5d-6e7f8a9b0c1d
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.RESERVED_FOR_INTERNAL_USE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6c7d8e9f-0a1b-4c2d-3e4f-5a6c7d8e9f0a
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ""
+        name: ACA_SOURCE_SYSTEM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f5a6d7c5-b6a3-4cbd-f9a5-cdfbecf7d8bc
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 8b9c0d1e-2f3a-4b4c-5d6e-7f8a9b0c1d2e
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_SOURCE_SYSTEM_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7d8e9f0a-1b2c-4d3e-4f5a-6b7d8e9f0a1b
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: ACA_DATE_CREATED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7e8f9b0-c1d2-4e3f-4a5b-6c7d8e9f0a1b
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 7e8f9b0c-1d2e-4f3a-4a5b-6d7e8a9b0c1d
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_DATE_CREATED"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e9f0a1b-2c3d-4e4f-5a6b-7c8e9f0a1b2c
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ACA_CREATE_USER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b8f9a0c1-d2e3-4f4a-5b6c-7d8e9f0a1b2c
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 8f9a0c1d-2e3f-4a4b-5b6c-7e8f9b0c1d2e
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_CREATE_USER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9f0a1b2c-3d4e-4f5a-6b7c-8d9f0a1b2c3d
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ""
+        name: ACA_DATE_UPDATED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c9a0b1d2-e3f4-4a5b-6c7d-8e9f0a1b2c3d
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 9a0b1d2e-3f4a-4b5c-6c7d-8f9a0c1d2e3f
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_DATE_UPDATED"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a1b2c3d-4e5f-4a6b-7c8d-9e0a1b2c3d4e
+          stepCounter: 3b9e1d4f-2a7c-4e8b-9d5f-6c1a8b2d3e4f
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ACA_UPDATE_USER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d0b1c2e3-f4a5-4b6c-7d8e-9f0a1b2c3d4e
+                stepCounter: 7a1b9c4d-8e2f-4c5b-a3d6-1e9f8c2b4a7d
+              - columnCounter: 0b1c2e3f-4a5b-4c6d-7d8e-9a0b1d2e3f4a
+                stepCounter: 5c3d8e1f-9b2a-4f6c-b7d4-2e1a9c3b8f5d
+            transform: "U.ACA_UPDATE_USER"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: ALLIANT_CLAIMS_ASTRUS_STAGE_DBO
+            nodeName: STG_PAYMENT_GB
+          - locationName: ALLIANT_CLAIMS_ASTRUS_STAGE_DBO
+            nodeName: STG_PAYMENT_ESIS
+        join:
+          joinCondition: |-
+            FROM (
+                SELECT * FROM {{ ref('ALLIANT_CLAIMS_ASTRUS_STAGE_DBO', 'STG_PAYMENT_GB') }}
+                UNION ALL
+                SELECT * FROM {{ ref('ALLIANT_CLAIMS_ASTRUS_STAGE_DBO', 'STG_PAYMENT_ESIS') }}
+            ) AS U
+        name: ACA_PAYMENT_TRANSACTION
+        noLinkRefs: []
+  name: ACA_PAYMENT_TRANSACTION
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
