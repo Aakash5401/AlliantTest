@@ -1,0 +1,124 @@
+fileVersion: 1
+id: 7d4e0b2a-5f3c-6a2b-9f4b-8e0c5d3a2b13
+name: ACA_PAYMENT_TRANSACTION
+type: Node
+operation:
+  name: ACA_PAYMENT_TRANSACTION
+  type: sourceInput
+  database: ''
+  deployEnabled: true
+  description: ''
+  locationName: ALLIANT_CLAIMS_ASTRUS_DBO
+  metadata:
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d
+          stepCounter: 7d4e0b2a-5f3c-6a2b-9f4b-8e0c5d3a2b13
+        config: {}
+        dataType: VARCHAR(30)
+        description: ''
+        name: SOURCE_SYSTEM_CLAIM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e
+          stepCounter: 7d4e0b2a-5f3c-6a2b-9f4b-8e0c5d3a2b13
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ''
+        name: ACA_RESERVE_TYPE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f
+          stepCounter: 7d4e0b2a-5f3c-6a2b-9f4b-8e0c5d3a2b13
+        config: {}
+        dataType: DATE
+        description: ''
+        name: TRANSACTION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a
+          stepCounter: 7d4e0b2a-5f3c-6a2b-9f4b-8e0c5d3a2b13
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ''
+        name: ACA_DATE_ID_TRANSACTION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b
+          stepCounter: 7d4e0b2a-5f3c-6a2b-9f4b-8e0c5d3a2b13
+        config: {}
+        dataType: CHAR(2)
+        description: ''
+        name: COVERAGE_GROUP_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c
+          stepCounter: 7d4e0b2a-5f3c-6a2b-9f4b-8e0c5d3a2b13
+        config: {}
+        dataType: VARCHAR(25)
+        description: ''
+        name: RESERVE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d
+          stepCounter: 7d4e0b2a-5f3c-6a2b-9f4b-8e0c5d3a2b13
+        config: {}
+        dataType: NUMBER(19,2)
+        description: ''
+        name: PAYMENT_AMOUNT_BY_RESERVE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a0b1c2d3e
+          stepCounter: 7d4e0b2a-5f3c-6a2b-9f4b-8e0c5d3a2b13
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ''
+        name: ACA_SOURCE_SYSTEM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f
+          stepCounter: 7d4e0b2a-5f3c-6a2b-9f4b-8e0c5d3a2b13
+        config: {}
+        dataType: TIMESTAMP_NTZ
+        description: ''
+        name: ACA_DATE_UPDATED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ''
+  schema: ''
+  sqlType: Source
+  version: 1

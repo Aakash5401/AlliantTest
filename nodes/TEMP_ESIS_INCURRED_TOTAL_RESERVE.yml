@@ -1,0 +1,138 @@
+fileVersion: 1
+id: 82f9b6d5-14e1-75d0-a3f6-91b208e5d6ce
+name: TEMP_ESIS_INCURRED_TOTAL_RESERVE
+type: Node
+operation:
+  name: TEMP_ESIS_INCURRED_TOTAL_RESERVE
+  type: sql
+  config:
+    insertStrategy: INSERT
+    postSQL: ''
+    preSQL: ''
+    testsEnabled: true
+    truncateBefore: true
+  database: ALLIANT_CLAIMS_ASTRUS_STAGE
+  deployEnabled: true
+  description: ''
+  isMultisource: false
+  locationName: ALLIANT_CLAIMS_ASTRUS_STAGE_DBO
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a2a2a2a2-b3b3-c4c4-d5d5-e6e6e6e6e6e6
+          stepCounter: 82f9b6d5-14e1-75d0-a3f6-91b208e5d6ce
+        config: {}
+        dataType: VARCHAR(30)
+        description: ''
+        name: SOURCE_SYSTEM_CLAIM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1a1a1a1a-2b2b-3c3c-4d4d-5e5e5e5e5e5e
+                stepCounter: 9f602d4c-7b5e-8c4d-1b6d-0e2f7f5c4d35
+            transform: U.SOURCE_SYSTEM_CLAIM_ID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b2b2b2b2-c3c3-d4d4-e5e5-f6f6f6f6f6f6
+          stepCounter: 82f9b6d5-14e1-75d0-a3f6-91b208e5d6ce
+        config: {}
+        dataType: NUMBER(10,0)
+        description: ''
+        name: ACA_RESERVE_TYPE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2b2b2b2b-3c3c-4d4d-5e5e-6f6f6f6f6f6f
+                stepCounter: 9f602d4c-7b5e-8c4d-1b6d-0e2f7f5c4d35
+            transform: U.ACA_RESERVE_TYPE_ID
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c2c2c2c2-d3d3-e4e4-f5f5-g6g6g6g6g6g6
+          stepCounter: 82f9b6d5-14e1-75d0-a3f6-91b208e5d6ce
+        config: {}
+        dataType: DATE
+        description: ''
+        name: TRANSACTION_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4a4b4c4d-4e4f-4a4b-4c4d-4e4f4a4b4c4d
+                stepCounter: 3da46180-bf9c-208b-5fa1-4c6db3908179
+            transform: U.TRANSACTION_DATE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d2d2d2d2-e3e3-f4f4-g5g5-h6h6h6h6h6h6
+          stepCounter: 82f9b6d5-14e1-75d0-a3f6-91b208e5d6ce
+        config: {}
+        dataType: CHAR(2)
+        description: ''
+        name: COVERAGE_GROUP_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e5e5e5e-6f6f-7a7a-8b8b-9c9c9c9c9c9c
+                stepCounter: 9f602d4c-7b5e-8c4d-1b6d-0e2f7f5c4d35
+            transform: U.COVERAGE_GROUP_CODE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2e2e2e2-f3f3-g4g4-h5h5-i6i6i6i6i6i6
+          stepCounter: 82f9b6d5-14e1-75d0-a3f6-91b208e5d6ce
+        config: {}
+        dataType: VARCHAR(25)
+        description: ''
+        name: RESERVE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6f6f6f6f-7a7a-8b8b-9c9c-0d0d0d0d0d0d
+                stepCounter: 9f602d4c-7b5e-8c4d-1b6d-0e2f7f5c4d35
+            transform: U.RESERVE_TYPE
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f2f2f2f2-g3g3-h4h4-i5i5-j6j6j6j6j6j6
+          stepCounter: 82f9b6d5-14e1-75d0-a3f6-91b208e5d6ce
+        config: {}
+        dataType: NUMBER(19,2)
+        description: ''
+        name: RESERVE_AMOUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7a7a7a7a-8b8b-9c9c-0d0d-1e1e1e1e1e1e
+                stepCounter: 9f602d4c-7b5e-8c4d-1b6d-0e2f7f5c4d35
+            transform: U.RESERVE_AMOUNT
+    cteString: ''
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          U: U
+        customSQL:
+          customSQL: ''
+        dependencies:
+          - locationName: ALLIANT_CLAIMS_ASTRUS_DBO
+            nodeName: ACA_RESERVE_TRANSACTION
+          - locationName: ALLIANT_CLAIMS_ASTRUS_STAGE_DBO
+            nodeName: TEMP_ESIS_INCURRED_NEW_TRANSACTION
+          - locationName: ALLIANT_CLAIMS_ASTRUS_DBO
+            nodeName: ACA_SOURCE_SYSTEM
+        join:
+          joinCondition: "FROM (\n  SELECT RES.SOURCE_SYSTEM_CLAIM_ID, RES.ACA_RESERVE_TYPE_ID,\
+            \ C.TRANSACTION_DATE, MAX(RES.COVERAGE_GROUP_CODE) AS COVERAGE_GROUP_CODE,\
+            \ MAX(RES.RESERVE_TYPE) AS RESERVE_TYPE, SUM(RES.RESERVE_AMOUNT) AS RESERVE_AMOUNT\n\
+            \  FROM {{ ref('ALLIANT_CLAIMS_ASTRUS_DBO', 'ACA_RESERVE_TRANSACTION')\
+            \ }} AS RES\n  INNER JOIN {{ ref('ALLIANT_CLAIMS_ASTRUS_STAGE_DBO', 'TEMP_ESIS_INCURRED_NEW_TRANSACTION')\
+            \ }} AS C ON C.SOURCE_SYSTEM_CLAIM_ID = RES.SOURCE_SYSTEM_CLAIM_ID AND\
+            \ C.ACA_RESERVE_TYPE_ID = RES.ACA_RESERVE_TYPE_ID\n  WHERE RES.ACA_SOURCE_SYSTEM_ID\
+            \ = (SELECT ACA_SOURCE_SYSTEM_ID FROM {{ ref('ALLIANT_CLAIMS_ASTRUS_DBO',\
+            \ 'ACA_SOURCE_SYSTEM') }} WHERE SOURCE_SYSTEM = 'ESIS') AND RES.TRANSACTION_DATE\
+            \ <= C.TRANSACTION_DATE\n  GROUP BY RES.SOURCE_SYSTEM_CLAIM_ID, RES.ACA_RESERVE_TYPE_ID,\
+            \ C.TRANSACTION_DATE\n) AS U"
+        name: TEMP_ESIS_INCURRED_TOTAL_RESERVE
+        noLinkRefs: []
+  overrideSQL: false
+  schema: DBO
+  sqlType: Stage
+  version: 1
